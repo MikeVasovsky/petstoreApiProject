@@ -1,0 +1,64 @@
+plugins {
+    id 'java'
+    id 'io.qameta.allure' version '3.1.0'
+    id 'io.freefair.lombok' version '9.2.0'
+}
+
+allure {
+    report {
+        version = '2.20.0'
+    }
+    adapter {
+        aspectjWeaver = true
+        frameworks {
+            junit5 {
+                adapterVersion = '2.20.0'
+            }
+        }
+    }
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation(
+            'org.junit.jupiter:junit-jupiter:5.10.0',
+            'com.github.javafaker:javafaker:1.0.2',
+            'org.junit.platform:junit-platform-launcher',
+            'io.qameta.allure:allure-rest-assured:2.32.0',
+            'io.rest-assured:rest-assured:6.0.0',
+            "io.qameta.allure:allure-selenide:2.33.0",
+            'io.rest-assured:json-schema-validator:6.0.0',
+            'org.assertj:assertj-core:3.27.7',
+            'org.aeonbits.owner:owner:1.0.12'
+    )
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+tasks.withType(Test).configureEach {
+    useJUnitPlatform()
+    systemProperties(System.getProperties())
+    systemProperty 'env', 'local'
+    systemProperty 'file.encoding', 'UTF-8'
+    jvmArgs '-Dstdout.encoding=UTF-8', '-Dstderr.encoding=UTF-8'
+    testLogging {
+        lifecycle {
+            events 'started', 'skipped', 'failed', 'STANDARD_ERROR', 'STANDARD_OUT'
+            exceptionFormat 'short'
+        }
+    }
+}
+
+tasks.named('test') {
+    useJUnitPlatform {
+        includeTags 'api-petstore'
+    }
+}
