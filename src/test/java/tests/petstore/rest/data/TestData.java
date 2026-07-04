@@ -25,7 +25,7 @@ public class TestData {
                 .email(FAKER.internet().emailAddress())
                 .password(randomPassword())
                 .phone(FAKER.phoneNumber().subscriberNumber(10))
-                .userStatus(0)
+                .userStatus(1)
                 .build();
     }
 }

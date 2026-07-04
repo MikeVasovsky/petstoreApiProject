@@ -20,4 +20,14 @@ public class UserSpecs {
                     "petstore/schemas/user/create_user_response_schema.json"))
             .expectBody("username", notNullValue())
             .build();
+
+    public static ResponseSpecification successfulDeleteUserResponseSpec = new ResponseSpecBuilder()
+            .log(ALL)
+            .expectStatusCode(200)
+            .build();
+
+    public static ResponseSpecification successfulSearchNotFoundUserResponseSpec = new ResponseSpecBuilder()
+            .log(ALL)
+            .expectStatusCode(404)
+            .build();
 }

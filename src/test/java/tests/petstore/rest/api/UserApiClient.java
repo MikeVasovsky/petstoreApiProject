@@ -3,13 +3,13 @@ package tests.petstore.rest.api;
 import io.qameta.allure.Step;
 import tests.petstore.rest.models.login.response.LoginResponseModel;
 import tests.petstore.rest.models.user.request.CreateUserRequestModel;
+import tests.petstore.rest.models.user.response.UserNotFounfResponseModel;
 import tests.petstore.rest.models.user.response.UserResponseModel;
 
 import static io.restassured.RestAssured.given;
 import static tests.petstore.rest.specs.login.LoginSpecs.loginRequestSpec;
 import static tests.petstore.rest.specs.login.LoginSpecs.successfulLoginResponseSpec;
-import static tests.petstore.rest.specs.user.UserSpecs.createUserRequestSpec;
-import static tests.petstore.rest.specs.user.UserSpecs.successfulCreateUserResponseSpec;
+import static tests.petstore.rest.specs.user.UserSpecs.*;
 
 public class UserApiClient {
 
@@ -38,5 +38,28 @@ public class UserApiClient {
                 .asString();
 
         return LoginResponseModel.fromMessage(message);
+    }
+
+    @Step("Удаление пользователя")
+    public int deleteUser(String username) {
+        return given(createUserRequestSpec)
+                .delete("/user/"+username+"/")
+                .then()
+                .spec(successfulDeleteUserResponseSpec)
+                .extract().statusCode();
+
+    }
+
+    @Step("Поиск удаленного или несуществующего пользователя по имени")
+    public UserNotFounfResponseModel getUserByUsername(String username){
+        String message =  given(createUserRequestSpec)
+                .get("/user/"+username+"/")
+                .then()
+                .spec(successfulSearchNotFoundUserResponseSpec)
+                .extract()
+                .asString();
+        return UserNotFounfResponseModel.fromMessage(message);
+
+
     }
 }
