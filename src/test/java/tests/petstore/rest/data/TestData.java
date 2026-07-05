@@ -23,6 +23,10 @@ public class TestData {
         return FAKER.animal().name();
     }
 
+    public static long randomPetId() {
+        return FAKER.number().numberBetween(900_000_000, 999_999_999);
+    }
+
     public static CreatePetRequestModel newPet() {
         return CreatePetRequestModel.builder()
                 .id(0L)
@@ -30,6 +34,9 @@ public class TestData {
                 .photoUrls(List.of(FAKER.internet().url()))
                 .status("available")
                 .build();
+    }
+    public static String newStatus() {
+        return FAKER.options().option("available", "pending", "sold");
     }
 
     public static CreateUserRequestModel newUser() {

@@ -29,7 +29,7 @@ public class CreateUserTest extends BaseTest {
     @Test
     @DisplayName("Проверка создания пользователя с невалидным телом запроса")
     void failedCreateUserWithInvalidBodyTest() {
-        ErrorResponseModel error = api.user.createUserWithInvalidBody("invalid-json");
+        ErrorResponseModel error = userSteps.createUserWithInvalidBody("invalid-json");
 
         step("Проверки", () -> {
             assertThat(error.getCode()).isEqualTo(400);

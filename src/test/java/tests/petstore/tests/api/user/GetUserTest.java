@@ -18,7 +18,8 @@ public class GetUserTest extends BaseTest {
     @DisplayName("Проверка получения пользователя по имени")
     void successfulGetUserByUsernameTest() {
         userSteps.createUser();
-        UserResponseModel result = api.user.getCorrectUserByUsername(userSteps.getUserResponse().getUsername());
+        UserResponseModel result = userSteps.getUser();
+
         step("Проверки", () -> {
             assertThat(result.getUsername()).isEqualTo(userSteps.getUserRequest().getUsername());
             assertThat(result.getFirstName()).isEqualTo(userSteps.getUserRequest().getFirstName());
@@ -32,7 +33,7 @@ public class GetUserTest extends BaseTest {
     @Test
     @DisplayName("Проверка получения несуществующего пользователя")
     void failedGetUserByUsernameNotFoundTest() {
-        UserNotFounfResponseModel result = api.user.getUserByUsername(randomUsername());
+        UserNotFounfResponseModel result = userSteps.getUserNotFound(randomUsername());
 
         step("Проверки", () -> {
             assertThat(result.getMessage()).contains("User not found");

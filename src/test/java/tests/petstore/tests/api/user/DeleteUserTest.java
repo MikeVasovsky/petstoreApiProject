@@ -15,14 +15,18 @@ class DeleteUserTest extends BaseTest {
 
     @Test
     @DisplayName("Проверка успешного удаления пользователя")
-    void successfulCreateUserTest() {
+    void successfulDeleteUserTest() {
         userSteps.createUser();
-        api.user.login(userSteps.getUserRequest().getUsername(), userSteps.getUserRequest().getPassword());
-        api.user.deleteUser(userSteps.getUserRequest().getUsername());
-        UserNotFounfResponseModel notFoundResponse = api.user.getUserByUsername(userSteps.getUserRequest().getUsername());
+        String createdUsername = userSteps.getUserResponse().getUsername();
+
+        userSteps.login();
+        userSteps.deleteUser();
+        UserNotFounfResponseModel notFoundResponse = userSteps.getUserNotFound();
 
         step("Проверки", () -> {
             assertThat(notFoundResponse.getMessage()).contains("User not found");
+            assertThat(userSteps.getUserRequest().getUsername()).isEqualTo(createdUsername);
+            assertThat(userSteps.getUserResponse().getUsername()).isEqualTo(createdUsername);
         });
     }
 
@@ -30,12 +34,11 @@ class DeleteUserTest extends BaseTest {
     @DisplayName("Проверка удаления несуществующего пользователя")
     void failedDeleteNonExistentUserTest() {
         String username = randomUsername();
-        api.user.deleteUser(username);
-        UserNotFounfResponseModel response = api.user.getUserByUsername(username);
+        userSteps.deleteUser(username);
+        UserNotFounfResponseModel response = userSteps.getUserNotFound(username);
 
         step("Проверки", () -> {
             assertThat(response.getMessage()).contains("User not found");
         });
     }
-
 }
