@@ -15,14 +15,14 @@ public class CreateUserTest extends BaseTest {
     @Test
     @DisplayName("Проверка успешного создания пользователя")
     void successfulCreateUserTest() {
-        registrationUser();
+        userSteps.createUser();
         step("Проверки", () -> {
-            assertThat(response.getUsername()).isEqualTo(request.getUsername());
-            assertThat(response.getFirstName()).isEqualTo(request.getFirstName());
-            assertThat(response.getLastName()).isEqualTo(request.getLastName());
-            assertThat(response.getEmail()).isEqualTo(request.getEmail());
-            assertThat(response.getPhone()).isEqualTo(request.getPhone());
-            assertThat(response.getUserStatus()).isEqualTo(request.getUserStatus());
+            assertThat(userSteps.getUserResponse().getUsername()).isEqualTo(userSteps.getUserRequest().getUsername());
+            assertThat(userSteps.getUserResponse().getFirstName()).isEqualTo(userSteps.getUserRequest().getFirstName());
+            assertThat(userSteps.getUserResponse().getLastName()).isEqualTo(userSteps.getUserRequest().getLastName());
+            assertThat(userSteps.getUserResponse().getEmail()).isEqualTo(userSteps.getUserRequest().getEmail());
+            assertThat(userSteps.getUserResponse().getPhone()).isEqualTo(userSteps.getUserRequest().getPhone());
+            assertThat(userSteps.getUserResponse().getUserStatus()).isEqualTo(userSteps.getUserRequest().getUserStatus());
         });
     }
 

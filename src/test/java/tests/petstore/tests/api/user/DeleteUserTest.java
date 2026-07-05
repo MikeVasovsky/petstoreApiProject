@@ -16,13 +16,13 @@ class DeleteUserTest extends BaseTest {
     @Test
     @DisplayName("Проверка успешного удаления пользователя")
     void successfulCreateUserTest() {
-        registrationUser();
-        api.user.login(request.getUsername(), request.getPassword());
-        api.user.deleteUser(request.getUsername());
-        UserNotFounfResponseModel response = api.user.getUserByUsername(request.getUsername());
+        userSteps.createUser();
+        api.user.login(userSteps.getUserRequest().getUsername(), userSteps.getUserRequest().getPassword());
+        api.user.deleteUser(userSteps.getUserRequest().getUsername());
+        UserNotFounfResponseModel notFoundResponse = api.user.getUserByUsername(userSteps.getUserRequest().getUsername());
 
         step("Проверки", () -> {
-            assertThat(response.getMessage()).contains("User not found");
+            assertThat(notFoundResponse.getMessage()).contains("User not found");
         });
     }
 

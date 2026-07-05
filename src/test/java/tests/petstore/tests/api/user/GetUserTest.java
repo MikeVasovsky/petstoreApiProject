@@ -17,15 +17,15 @@ public class GetUserTest extends BaseTest {
     @Test
     @DisplayName("Проверка получения пользователя по имени")
     void successfulGetUserByUsernameTest() {
-        registrationUser();
-        UserResponseModel result = api.user.getCorrectUserByUsername(response.getUsername());
+        userSteps.createUser();
+        UserResponseModel result = api.user.getCorrectUserByUsername(userSteps.getUserResponse().getUsername());
         step("Проверки", () -> {
-            assertThat(result.getUsername()).isEqualTo(request.getUsername());
-            assertThat(result.getFirstName()).isEqualTo(request.getFirstName());
-            assertThat(result.getLastName()).isEqualTo(request.getLastName());
-            assertThat(result.getEmail()).isEqualTo(request.getEmail());
-            assertThat(result.getPhone()).isEqualTo(request.getPhone());
-            assertThat(result.getUserStatus()).isEqualTo(request.getUserStatus());
+            assertThat(result.getUsername()).isEqualTo(userSteps.getUserRequest().getUsername());
+            assertThat(result.getFirstName()).isEqualTo(userSteps.getUserRequest().getFirstName());
+            assertThat(result.getLastName()).isEqualTo(userSteps.getUserRequest().getLastName());
+            assertThat(result.getEmail()).isEqualTo(userSteps.getUserRequest().getEmail());
+            assertThat(result.getPhone()).isEqualTo(userSteps.getUserRequest().getPhone());
+            assertThat(result.getUserStatus()).isEqualTo(userSteps.getUserRequest().getUserStatus());
         });
     }
 

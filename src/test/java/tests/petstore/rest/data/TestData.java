@@ -2,7 +2,10 @@ package tests.petstore.rest.data;
 
 import com.github.javafaker.Faker;
 import lombok.Data;
+import tests.petstore.rest.models.pet.request.CreatePetRequestModel;
 import tests.petstore.rest.models.user.request.CreateUserRequestModel;
+
+import java.util.List;
 
 @Data
 public class TestData {
@@ -14,6 +17,19 @@ public class TestData {
 
     public static String randomPassword() {
         return FAKER.internet().password(8, 16);
+    }
+
+    public static String randomPetName() {
+        return FAKER.animal().name();
+    }
+
+    public static CreatePetRequestModel newPet() {
+        return CreatePetRequestModel.builder()
+                .id(0L)
+                .name(randomPetName())
+                .photoUrls(List.of(FAKER.internet().url()))
+                .status("available")
+                .build();
     }
 
     public static CreateUserRequestModel newUser() {

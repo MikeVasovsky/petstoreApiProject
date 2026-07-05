@@ -16,13 +16,16 @@ public class LoginTest extends BaseTest {
     @Test
     @DisplayName("Проверка успешной авторизации пользователя")
     void successfulLoginTest() {
-        registrationUser();
+        userSteps.createUser();
 
-        LoginResponseModel response = api.user.login(request.getUsername(), request.getPassword());
+        LoginResponseModel loginResponse = api.user.login(
+                userSteps.getUserRequest().getUsername(),
+                userSteps.getUserRequest().getPassword()
+        );
 
         step("Проверки", () -> {
-            assertThat(response.getMessage()).contains("Logged in user session:");
-            assertThat(response.getSessionId()).isNotBlank();
+            assertThat(loginResponse.getMessage()).contains("Logged in user session:");
+            assertThat(loginResponse.getSessionId()).isNotBlank();
         });
     }
 
