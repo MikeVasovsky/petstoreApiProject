@@ -59,7 +59,15 @@ public class UserApiClient {
                 .extract()
                 .asString();
         return UserNotFounfResponseModel.fromMessage(message);
+    }
 
-
+    @Step("Поиск пользователя по имени")
+    public UserResponseModel getCorrectUserByUsername(String username){
+        return given(createUserRequestSpec)
+                .get("/user/"+username+"/")
+                .then()
+                .spec(successfulSearchUserByUsername)
+                .extract()
+                .as(UserResponseModel.class);
     }
 }

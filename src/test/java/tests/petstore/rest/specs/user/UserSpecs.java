@@ -30,4 +30,10 @@ public class UserSpecs {
             .log(ALL)
             .expectStatusCode(404)
             .build();
+
+    public static ResponseSpecification successfulSearchUserByUsername = new ResponseSpecBuilder()
+            .log(ALL)
+            .expectStatusCode(200)
+            .expectBody(notNullValue())
+            .build();
 }
