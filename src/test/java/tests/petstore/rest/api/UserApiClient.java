@@ -1,6 +1,7 @@
 package tests.petstore.rest.api;
 
 import io.qameta.allure.Step;
+import tests.petstore.rest.models.error.ErrorResponseModel;
 import tests.petstore.rest.models.login.response.LoginResponseModel;
 import tests.petstore.rest.models.user.request.CreateUserRequestModel;
 import tests.petstore.rest.models.user.response.UserNotFounfResponseModel;
@@ -9,6 +10,7 @@ import tests.petstore.rest.models.user.response.UserResponseModel;
 import static io.restassured.RestAssured.given;
 import static tests.petstore.rest.specs.login.LoginSpecs.loginRequestSpec;
 import static tests.petstore.rest.specs.login.LoginSpecs.successfulLoginResponseSpec;
+import static tests.petstore.rest.specs.login.LoginSpecs.invalidLoginResponseSpec;
 import static tests.petstore.rest.specs.user.UserSpecs.*;
 
 public class UserApiClient {
@@ -40,6 +42,16 @@ public class UserApiClient {
         return LoginResponseModel.fromMessage(message);
     }
 
+    @Step("Авторизация с неверным HTTP-методом")
+    public ErrorResponseModel loginWithInvalidMethod() {
+        return given(loginRequestSpec)
+                .post("/user/login")
+                .then()
+                .spec(invalidLoginResponseSpec)
+                .extract()
+                .as(ErrorResponseModel.class);
+    }
+
     @Step("Удаление пользователя")
     public int deleteUser(String username) {
         return given(createUserRequestSpec)
@@ -69,5 +81,16 @@ public class UserApiClient {
                 .spec(successfulSearchUserByUsername)
                 .extract()
                 .as(UserResponseModel.class);
+    }
+
+    @Step("Создание пользователя с невалидным телом запроса")
+    public ErrorResponseModel createUserWithInvalidBody(String invalidBody) {
+        return given(createUserRequestSpec)
+                .body(invalidBody)
+                .post("/user")
+                .then()
+                .spec(invalidCreateUserResponseSpec)
+                .extract()
+                .as(ErrorResponseModel.class);
     }
 }

@@ -3,6 +3,7 @@ package tests.petstore.tests.api.user;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import tests.petstore.rest.models.error.ErrorResponseModel;
 import tests.petstore.tests.api.BaseTest;
 
 import static io.qameta.allure.Allure.step;
@@ -22,6 +23,17 @@ public class CreateUserTest extends BaseTest {
             assertThat(response.getEmail()).isEqualTo(request.getEmail());
             assertThat(response.getPhone()).isEqualTo(request.getPhone());
             assertThat(response.getUserStatus()).isEqualTo(request.getUserStatus());
+        });
+    }
+
+    @Test
+    @DisplayName("Проверка создания пользователя с невалидным телом запроса")
+    void failedCreateUserWithInvalidBodyTest() {
+        ErrorResponseModel error = api.user.createUserWithInvalidBody("invalid-json");
+
+        step("Проверки", () -> {
+            assertThat(error.getCode()).isEqualTo(400);
+            assertThat(error.getMessage()).contains("Input error");
         });
     }
 }

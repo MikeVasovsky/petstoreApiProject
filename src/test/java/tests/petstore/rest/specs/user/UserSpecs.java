@@ -6,6 +6,7 @@ import io.restassured.specification.ResponseSpecification;
 
 import static io.restassured.filter.log.LogDetail.ALL;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static tests.petstore.rest.specs.BaseSpec.baseRequestSpec;
 
@@ -35,5 +36,11 @@ public class UserSpecs {
             .log(ALL)
             .expectStatusCode(200)
             .expectBody(notNullValue())
+            .build();
+
+    public static ResponseSpecification invalidCreateUserResponseSpec = new ResponseSpecBuilder()
+            .log(ALL)
+            .expectStatusCode(400)
+            .expectBody("message", containsString("Input error"))
             .build();
 }
