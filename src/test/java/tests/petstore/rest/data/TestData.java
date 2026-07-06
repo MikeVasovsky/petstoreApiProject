@@ -25,7 +25,7 @@ public class TestData {
         return FAKER.animal().name();
     }
 
-    public static long randomPetId() {
+    public static int randomId() {
         return FAKER.number().numberBetween(900_000_000, 999_999_999);
     }
 
@@ -37,14 +37,11 @@ public class TestData {
                 .status("available")
                 .build();
     }
-    public static String newStatus() {
-        return FAKER.options().option("available", "pending", "sold");
-    }
 
-    public static CreateOrderRequestModel newOrder(Long petId) {
+    public static CreateOrderRequestModel newOrder(int id) {
         return CreateOrderRequestModel.builder()
                 .id(0L)
-                .petId(petId)
+                .petId((long) id)
                 .quantity(FAKER.number().numberBetween(1, 10))
                 .shipDate(Instant.now().toString())
                 .status("placed")

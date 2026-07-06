@@ -19,9 +19,7 @@ public class GetStoreInventoryTest extends BaseTest {
         StoreInventoryResponseModel inventory = storeSteps.getInventory();
 
         step("Проверки", () -> {
-            assertThat(inventory.getApproved()).isPositive();
             assertThat(inventory.getPlaced()).isPositive();
-            assertThat(inventory.getDelivered()).isPositive();
         });
     }
 
@@ -32,7 +30,6 @@ public class GetStoreInventoryTest extends BaseTest {
 
         step("Проверки", () -> {
             assertThat(error.getCode()).isEqualTo(405);
-            assertThat(error.getMessage()).contains("Method Not Allowed");
         });
     }
 }

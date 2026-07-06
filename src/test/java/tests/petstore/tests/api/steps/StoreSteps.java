@@ -32,8 +32,8 @@ public class StoreSteps {
     }
 
     @Step("Размещение заказа")
-    public void placeOrder(Long petId) {
-        orderRequest = newOrder(petId);
+    public void placeOrder(int id) {
+        orderRequest = newOrder(id);
         orderResponse = api.store.placeOrder(orderRequest);
     }
 

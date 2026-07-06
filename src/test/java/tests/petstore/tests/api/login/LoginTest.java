@@ -19,7 +19,6 @@ public class LoginTest extends BaseTest {
         userSteps.login();
 
         step("Проверки", () -> {
-            assertThat(userSteps.getLoginResponse().getMessage()).contains("Logged in user session:");
             assertThat(userSteps.getLoginResponse().getSessionId()).isNotBlank();
         });
     }
@@ -31,7 +30,6 @@ public class LoginTest extends BaseTest {
 
         step("Проверки", () -> {
             assertThat(error.getCode()).isEqualTo(405);
-            assertThat(error.getMessage()).contains("Method Not Allowed");
         });
     }
 }

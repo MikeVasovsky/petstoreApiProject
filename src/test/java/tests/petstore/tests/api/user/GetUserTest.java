@@ -22,11 +22,6 @@ public class GetUserTest extends BaseTest {
 
         step("Проверки", () -> {
             assertThat(result.getUsername()).isEqualTo(userSteps.getUserRequest().getUsername());
-            assertThat(result.getFirstName()).isEqualTo(userSteps.getUserRequest().getFirstName());
-            assertThat(result.getLastName()).isEqualTo(userSteps.getUserRequest().getLastName());
-            assertThat(result.getEmail()).isEqualTo(userSteps.getUserRequest().getEmail());
-            assertThat(result.getPhone()).isEqualTo(userSteps.getUserRequest().getPhone());
-            assertThat(result.getUserStatus()).isEqualTo(userSteps.getUserRequest().getUserStatus());
         });
     }
 

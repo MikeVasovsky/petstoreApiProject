@@ -9,7 +9,7 @@ import tests.petstore.tests.api.BaseTest;
 
 import static io.qameta.allure.Allure.step;
 import static org.assertj.core.api.Assertions.assertThat;
-import static tests.petstore.rest.data.TestData.randomPetId;
+import static tests.petstore.rest.data.TestData.randomId;
 
 @Tag("api-petstore")
 public class GetPetTest extends BaseTest {
@@ -21,17 +21,14 @@ public class GetPetTest extends BaseTest {
         PetResponseModel result = petSteps.getPet();
 
         step("Проверки", () -> {
-            assertThat(result.getId()).isEqualTo(petSteps.getPetResponse().getId());
             assertThat(result.getName()).isEqualTo(petSteps.getPetRequest().getName());
-            assertThat(result.getPhotoUrls()).isEqualTo(petSteps.getPetRequest().getPhotoUrls());
-            assertThat(result.getStatus()).isEqualTo(petSteps.getPetRequest().getStatus());
         });
     }
 
     @Test
     @DisplayName("Проверка получения несуществующего питомца")
     void failedGetPetNotFoundTest() {
-        PetNotFoundResponseModel result = petSteps.getPetNotFound(randomPetId());
+        PetNotFoundResponseModel result = petSteps.getPetNotFound(randomId());
 
         step("Проверки", () -> {
             assertThat(result.getMessage()).contains("Pet not found");

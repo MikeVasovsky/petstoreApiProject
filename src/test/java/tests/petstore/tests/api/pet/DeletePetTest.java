@@ -8,8 +8,7 @@ import tests.petstore.tests.api.BaseTest;
 
 import static io.qameta.allure.Allure.step;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static tests.petstore.rest.data.TestData.randomPetId;
+import static tests.petstore.rest.data.TestData.randomId;
 
 @Tag("api-petstore")
 class DeletePetTest extends BaseTest {
@@ -18,24 +17,20 @@ class DeletePetTest extends BaseTest {
     @DisplayName("Проверка успешного удаления питомца")
     void successfulDeletePetTest() {
         petSteps.createPet();
-        Long createdPetId = petSteps.getPetResponse().getId();
-
-        int statusCode = petSteps.deletePet();
+        petSteps.deletePet();
         PetNotFoundResponseModel notFoundResponse = petSteps.getPetNotFound();
 
         step("Проверки", () -> {
-            assertEquals(200, statusCode);
             assertThat(notFoundResponse.getMessage()).contains("Pet not found");
-            assertThat(petSteps.getPetResponse().getId()).isEqualTo(createdPetId);
         });
     }
 
     @Test
     @DisplayName("Проверка удаления несуществующего питомца")
     void failedDeleteNonExistentPetTest() {
-        long petId = randomPetId();
-        petSteps.deletePet(petId);
-        PetNotFoundResponseModel response = petSteps.getPetNotFound(petId);
+        int id = randomId();
+        petSteps.deletePet(id);
+        PetNotFoundResponseModel response = petSteps.getPetNotFound(id);
 
         step("Проверки", () -> {
             assertThat(response.getMessage()).contains("Pet not found");

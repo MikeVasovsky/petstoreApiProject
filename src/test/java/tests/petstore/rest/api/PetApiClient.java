@@ -24,12 +24,12 @@ public class PetApiClient {
     }
 
     @Step("Обновить питомца")
-    public PetResponseModel updatePet(Long petId, String name, String status) {
+    public PetResponseModel updatePet(int id, String name, String status) {
         return given(createPetRequestSpec)
                 .queryParam("name", name)
                 .queryParam("status", status)
                 .when()
-                .post("/pet/" + petId + "/")
+                .post("/pet/" + id + "/")
                 .then()
                 .spec(successfulCreatePetResponseSpec)
                 .extract()
@@ -37,7 +37,7 @@ public class PetApiClient {
     }
 
     @Step("Получить питомца по id")
-    public PetResponseModel getPet(Long id) {
+    public PetResponseModel getPet(int id) {
         return given(createPetRequestSpec)
                 .get("/pet/" + id)
                 .then()
@@ -47,7 +47,7 @@ public class PetApiClient {
     }
 
     @Step("Удаление питомца")
-    public int deletePet(Long id) {
+    public int deletePet(int id) {
         return given(createPetRequestSpec)
                 .delete("/pet/" + id + "/")
                 .then()
@@ -68,11 +68,11 @@ public class PetApiClient {
     }
 
     @Step("Обновление несуществующего питомца")
-    public PetNotFoundResponseModel updatePetNotFound(Long petId, String name, String status) {
+    public PetNotFoundResponseModel updatePetNotFound(int id, String name, String status) {
         String message = given(createPetRequestSpec)
                 .queryParam("name", name)
                 .queryParam("status", status)
-                .post("/pet/" + petId + "/")
+                .post("/pet/" + id + "/")
                 .then()
                 .spec(petNotFoundResponseSpec)
                 .extract()
@@ -81,7 +81,7 @@ public class PetApiClient {
     }
 
     @Step("Поиск удаленного или несуществующего питомца по id")
-    public PetNotFoundResponseModel getPetNotFound(Long id) {
+    public PetNotFoundResponseModel getPetNotFound(int id) {
         String message = given(createPetRequestSpec)
                 .get("/pet/" + id)
                 .then()

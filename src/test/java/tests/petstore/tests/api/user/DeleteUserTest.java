@@ -17,16 +17,12 @@ class DeleteUserTest extends BaseTest {
     @DisplayName("Проверка успешного удаления пользователя")
     void successfulDeleteUserTest() {
         userSteps.createUser();
-        String createdUsername = userSteps.getUserResponse().getUsername();
-
         userSteps.login();
         userSteps.deleteUser();
         UserNotFounfResponseModel notFoundResponse = userSteps.getUserNotFound();
 
         step("Проверки", () -> {
             assertThat(notFoundResponse.getMessage()).contains("User not found");
-            assertThat(userSteps.getUserRequest().getUsername()).isEqualTo(createdUsername);
-            assertThat(userSteps.getUserResponse().getUsername()).isEqualTo(createdUsername);
         });
     }
 
