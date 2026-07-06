@@ -3,8 +3,10 @@ package tests.petstore.rest.data;
 import com.github.javafaker.Faker;
 import lombok.Data;
 import tests.petstore.rest.models.pet.request.CreatePetRequestModel;
+import tests.petstore.rest.models.store.request.CreateOrderRequestModel;
 import tests.petstore.rest.models.user.request.CreateUserRequestModel;
 
+import java.time.Instant;
 import java.util.List;
 
 @Data
@@ -37,6 +39,17 @@ public class TestData {
     }
     public static String newStatus() {
         return FAKER.options().option("available", "pending", "sold");
+    }
+
+    public static CreateOrderRequestModel newOrder(Long petId) {
+        return CreateOrderRequestModel.builder()
+                .id(0L)
+                .petId(petId)
+                .quantity(FAKER.number().numberBetween(1, 10))
+                .shipDate(Instant.now().toString())
+                .status("placed")
+                .complete(false)
+                .build();
     }
 
     public static CreateUserRequestModel newUser() {

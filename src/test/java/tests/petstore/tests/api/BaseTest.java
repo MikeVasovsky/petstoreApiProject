@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeAll;
 import tests.petstore.config.ApiTestConfig;
 import tests.petstore.rest.api.ApiClient;
 import tests.petstore.tests.api.steps.PetSteps;
+import tests.petstore.tests.api.steps.StoreSteps;
 import tests.petstore.tests.api.steps.UserSteps;
 
 public class BaseTest {
@@ -13,6 +14,7 @@ public class BaseTest {
 
     protected UserSteps userSteps = new UserSteps(api);
     protected PetSteps petSteps = new PetSteps(api);
+    protected StoreSteps storeSteps = new StoreSteps(api);
 
     @BeforeAll
     static void setUp() {
