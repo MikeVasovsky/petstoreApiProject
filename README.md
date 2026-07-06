@@ -4,21 +4,21 @@
 
 ## Технологии
 
-[![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)](https://www.oracle.com/java/)
-[![Gradle](https://img.shields.io/badge/Gradle-02303A?style=for-the-badge&logo=gradle&logoColor=white)](https://gradle.org/)
-[![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
-[![Swagger](https://img.shields.io/badge/Swagger_Petstore-85EA2D?style=for-the-badge&logo=swagger&logoColor=black)](https://petstore3.swagger.io/)
+[![Java](https://img.shields.io/badge/Java-ED8B00?style=flat&logo=openjdk&logoColor=white)](https://www.oracle.com/java/)
+[![Gradle](https://img.shields.io/badge/Gradle-02303A?style=flat&logo=gradle&logoColor=white)](https://gradle.org/)
+[![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white)](https://www.docker.com/)
+[![Swagger](https://img.shields.io/badge/Swagger_Petstore-85EA2D?style=flat&logo=swagger&logoColor=black)](https://petstore3.swagger.io/)
 
 ## Библиотеки
 
-[![JUnit 5](https://img.shields.io/badge/JUnit_5-25A162?style=for-the-badge&logo=junit5&logoColor=white)](https://junit.org/junit5/)
-[![Rest Assured](https://img.shields.io/badge/Rest_Assured-4E5D6C?style=for-the-badge)](https://rest-assured.io/)
-[![Allure](https://img.shields.io/badge/Allure-FF6B00?style=for-the-badge)](https://allurereport.org/)
-[![AssertJ](https://img.shields.io/badge/AssertJ-FF6F00?style=for-the-badge)](https://assertj.github.io/doc/)
-[![Owner](https://img.shields.io/badge/Owner-5C6BC0?style=for-the-badge)](https://owner.aeonbits.org/)
-[![Lombok](https://img.shields.io/badge/Lombok-1A1A1A?style=for-the-badge&logo=lombok&logoColor=white)](https://projectlombok.org/)
-[![JavaFaker](https://img.shields.io/badge/JavaFaker-00897B?style=for-the-badge)](https://github.com/DiUS/java-faker)
-[![JSON Schema](https://img.shields.io/badge/JSON_Schema_Validator-3949AB?style=for-the-badge&logo=json&logoColor=white)](https://json-schema.org/)
+[![JUnit 5](https://img.shields.io/badge/JUnit_5-25A162?style=flat&logo=junit5&logoColor=white)](https://junit.org/junit5/)
+[![Rest Assured](https://img.shields.io/badge/Rest_Assured-4E5D6C?style=flat)](https://rest-assured.io/)
+[![Allure](https://img.shields.io/badge/Allure-FF6B00?style=flat)](https://allurereport.org/)
+[![AssertJ](https://img.shields.io/badge/AssertJ-FF6F00?style=flat)](https://assertj.github.io/doc/)
+[![Owner](https://img.shields.io/badge/Owner-5C6BC0?style=flat)](https://owner.aeonbits.org/)
+[![Lombok](https://img.shields.io/badge/Lombok-1A1A1A?style=flat&logo=lombok&logoColor=white)](https://projectlombok.org/)
+[![JavaFaker](https://img.shields.io/badge/JavaFaker-00897B?style=flat)](https://github.com/DiUS/java-faker)
+[![JSON Schema](https://img.shields.io/badge/JSON_Schema_Validator-3949AB?style=flat&logo=json&logoColor=white)](https://json-schema.org/)
 
 ## Запуск
 
