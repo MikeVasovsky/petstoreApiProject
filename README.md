@@ -61,15 +61,6 @@ docker stop petstore3 && docker rm petstore3
 ./gradlew test --tests "tests.petstore.tests.api.pet.*" --tests "tests.petstore.tests.api.user.*"
 ```
 
-Запуск с другим окружением:
-
-```bash
-./gradlew test \
-  -Denv=local \
-  -Dbase.uri=http://localhost:8080 \
-  -Dbase.path=/api/v3
-```
-
 Allure-отчёт:
 
 ```bash
@@ -80,11 +71,3 @@ Allure-отчёт:
 ## Jenkins
 
 [Jenkins — ikrylov_item](https://jenkins.autotests.cloud/view/java_students/job/ikrylov_item/)
-
-Параметры запуска:
-
-```
--Denv=local
--Dbase.uri=http://localhost:8080
--Dbase.path=/api/v3
-```
