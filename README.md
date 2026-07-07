@@ -1,6 +1,6 @@
 # Petstore API Tests
 
-Автотесты API Swagger Petstore.
+Автотесты API [Swagger Petstore](https://petstore3.swagger.io/).
 
 ## Технологии
 
@@ -22,16 +22,69 @@
 
 ## Запуск
 
+Поднять локальный сервер Petstore:
+
 ```bash
 docker pull swaggerapi/petstore3:latest
 docker run -d --name petstore3 -p 8080:8080 swaggerapi/petstore3:latest
 ```
+
+Запуск тестов:
 
 ```bash
 chmod +x gradlew
 ./gradlew test
 ```
 
+Остановить и удалить контейнер:
+
 ```bash
 docker stop petstore3 && docker rm petstore3
+```
+
+Запуск по разделам:
+
+| Раздел | Пакет тестов |
+|--------|--------------|
+| `api-petstore` | все тесты |
+| `pet` | питомцы |
+| `user` | пользователи |
+| `store` | магазин |
+| `login` | авторизация |
+
+```bash
+./gradlew test
+./gradlew test --tests "tests.petstore.tests.api.pet.*"
+./gradlew test --tests "tests.petstore.tests.api.user.*"
+./gradlew test --tests "tests.petstore.tests.api.store.*"
+./gradlew test --tests "tests.petstore.tests.api.login.*"
+./gradlew test --tests "tests.petstore.tests.api.pet.*" --tests "tests.petstore.tests.api.user.*"
+```
+
+Запуск с другим окружением:
+
+```bash
+./gradlew test \
+  -Denv=local \
+  -Dbase.uri=http://localhost:8080 \
+  -Dbase.path=/api/v3
+```
+
+Allure-отчёт:
+
+```bash
+./gradlew allureReport
+./gradlew allureServe
+```
+
+## Jenkins
+
+[Jenkins — ikrylov_item](https://jenkins.autotests.cloud/view/java_students/job/ikrylov_item/)
+
+Параметры запуска:
+
+```
+-Denv=local
+-Dbase.uri=http://localhost:8080
+-Dbase.path=/api/v3
 ```
