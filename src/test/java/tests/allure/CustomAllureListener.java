@@ -1,4 +1,4 @@
-package tests.allure.rest;
+package tests.allure;
 
 import io.qameta.allure.restassured.AllureRestAssured;
 
